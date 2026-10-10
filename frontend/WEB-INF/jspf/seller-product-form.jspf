@@ -1,0 +1,67 @@
+<%-- The product form shared by add-product.jsp and edit-product.jsp.
+     The including page must define, before this include:
+       String               formAction     - servlet path, e.g. "/seller/products/create"
+       String               submitLabel    - button text
+       Integer              formProductId  - product id when editing, null when adding
+       Map<String,String>   formValues     - current field values (name, description, price,
+                                              category, imageUrl, stock)
+       List<String>         categories     - existing categories, offered as suggestions
+     Requires seller-util.jspf (for h()). --%>
+<%
+    String csrf = SecurityUtil.csrfToken(session);
+%>
+<form action="<%= request.getContextPath() %><%= formAction %>" method="post" class="seller-form" novalidate>
+    <input type="hidden" name="csrfToken" value="<%= h(csrf) %>">
+    <% if (formProductId != null) { %>
+        <input type="hidden" name="productId" value="<%= formProductId %>">
+    <% } %>
+
+    <div class="form-field form-field-full">
+        <label for="name">Product name <span class="req">*</span></label>
+        <input type="text" id="name" name="name" maxlength="150" required
+               value="<%= h(formValues.get("name")) %>" placeholder="e.g. Stainless Water Bottle">
+    </div>
+
+    <div class="form-field form-field-full">
+        <label for="description">Description</label>
+        <textarea id="description" name="description" rows="4" maxlength="2000"
+                  placeholder="What should buyers know about this product?"><%= h(formValues.get("description")) %></textarea>
+    </div>
+
+    <div class="form-field">
+        <label for="price">Price (&#8377;) <span class="req">*</span></label>
+        <input type="text" id="price" name="price" inputmode="decimal" required
+               value="<%= h(formValues.get("price")) %>" placeholder="499.00">
+        <small class="form-hint">Up to 2 decimal places.</small>
+    </div>
+
+    <div class="form-field">
+        <label for="stock">Stock quantity <span class="req">*</span></label>
+        <input type="number" id="stock" name="stock" min="0" max="1000000" step="1" required
+               value="<%= h(formValues.get("stock")) %>" placeholder="0">
+    </div>
+
+    <div class="form-field">
+        <label for="category">Category <span class="req">*</span></label>
+        <input type="text" id="category" name="category" maxlength="80" required list="categoryOptions"
+               value="<%= h(formValues.get("category")) %>" placeholder="e.g. Electronics">
+        <datalist id="categoryOptions">
+            <% if (categories != null) { for (String c : categories) { %>
+                <option value="<%= h(c) %>">
+            <% } } %>
+        </datalist>
+        <small class="form-hint">Pick an existing category or type a new one.</small>
+    </div>
+
+    <div class="form-field">
+        <label for="imageUrl">Image URL</label>
+        <input type="text" id="imageUrl" name="imageUrl" maxlength="500" inputmode="url"
+               value="<%= h(formValues.get("imageUrl")) %>" placeholder="https://example.com/photo.jpg">
+        <small class="form-hint">Optional. Must start with http:// or https://</small>
+    </div>
+
+    <div class="form-actions">
+        <button type="submit" class="btn btn-primary btn-wide"><%= h(submitLabel) %></button>
+        <a href="<%= request.getContextPath() %>/seller/products" class="btn btn-secondary btn-wide">Cancel</a>
+    </div>
+</form>

@@ -1,0 +1,36 @@
+<%-- Shared footer markup only (no closing tags - the including page
+     writes its own <script> tag(s) and </body></html> after this,
+     so scripts still load after all visible content). --%>
+<footer class="site-footer">
+    <div class="site-footer-inner">
+        <span>&copy; 2026 SUHANAMART. All rights reserved.</span>
+        <span class="site-footer-tagline">Smart Shopping System</span>
+    </div>
+</footer>
+
+<%-- AI chat widget (main.js). Session-aware: only rendered for a logged-in
+     user, so the widget is never shown - and /chat is never called - for
+     an anonymous visitor. Its own CSRF token (independent of any form on
+     the page) is read by main.js from the data attribute below. --%>
+<% if (session != null && session.getAttribute("userId") != null) { %>
+    <div id="chatWidget" class="chat-widget" data-csrf-token="<%= com.suhanamart.util.SecurityUtil.csrfToken(session) %>">
+        <button type="button" id="chatToggle" class="chat-toggle" aria-expanded="false" aria-controls="chatPanel">
+            <span class="chat-toggle-icon" aria-hidden="true">&#128172;</span>
+            <span class="chat-toggle-label">Ask SUHANAMART</span>
+        </button>
+        <section id="chatPanel" class="chat-panel" hidden aria-label="SUHANAMART chat assistant">
+            <header class="chat-panel-header">
+                <span>SUHANAMART Assistant</span>
+                <button type="button" id="chatClose" aria-label="Close chat">&times;</button>
+            </header>
+            <div id="chatMessages" class="chat-messages" aria-live="polite">
+                <div class="chat-message chat-message-bot">Hi! Ask me about a product, a review, or your recent orders.</div>
+            </div>
+            <form id="chatForm" class="chat-form">
+                <label for="chatInput" class="sr-only">Your message</label>
+                <input type="text" id="chatInput" maxlength="500" autocomplete="off" placeholder="Ask about a product or your order...">
+                <button type="submit">Send</button>
+            </form>
+        </section>
+    </div>
+<% } %>

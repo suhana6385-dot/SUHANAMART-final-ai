@@ -1,0 +1,31 @@
+<%-- Seller navigation. The including page must set the String variable
+     "activeNav" ("dashboard", "products", "add-product" or "orders").
+     Uses the same markup/ids as navbar.jspf, so main.js's mobile menu
+     toggle works unchanged. --%>
+<header class="dash-header">
+    <div class="dash-header-inner">
+
+        <div class="dash-brand">
+            <div class="brand-icon">S</div>
+            <span>SUHANAMART</span>
+            <span class="seller-tag">Seller</span>
+        </div>
+
+        <nav class="dash-nav" id="dashNav">
+            <a href="<%= request.getContextPath() %>/seller/dashboard"
+               class="<%= "dashboard".equals(activeNav) ? "active" : "" %>">Dashboard</a>
+            <a href="<%= request.getContextPath() %>/seller/products"
+               class="<%= "products".equals(activeNav) ? "active" : "" %>">My Products</a>
+            <a href="<%= request.getContextPath() %>/seller/products/new"
+               class="<%= "add-product".equals(activeNav) ? "active" : "" %>">Add Product</a>
+            <a href="<%= request.getContextPath() %>/seller/orders"
+               class="<%= "orders".equals(activeNav) ? "active" : "" %>">Incoming Orders</a>
+            <a href="<%= request.getContextPath() %>/LogoutServlet" class="nav-logout">Logout</a>
+        </nav>
+
+        <button type="button" class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
+
+    </div>
+</header>

@@ -1,0 +1,15 @@
+<%-- Helpers shared by the admin JSPs. Include this FIRST in each admin page.
+     h(x)    - HTML-escapes any value (use it for EVERY piece of dynamic text)
+     fmt(ts) - formats a timestamp for display
+     Identical to seller-util.jspf - kept as a separate file because the
+     admin and seller areas are otherwise independent modules. --%>
+<%@ page import="com.suhanamart.util.SecurityUtil" %>
+<%!
+    private String h(Object value) {
+        return SecurityUtil.escapeHtml(value);
+    }
+
+    private String fmt(java.sql.Timestamp timestamp) {
+        return timestamp == null ? "" : new java.text.SimpleDateFormat("dd MMM yyyy, HH:mm").format(timestamp);
+    }
+%>

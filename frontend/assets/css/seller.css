@@ -1,0 +1,492 @@
+/* SUHANAMART - seller module styles.
+   Loaded AFTER dashboard.css and shop.css on the seller pages. It reuses
+   their tokens (brand #172033, page #f4f7fb, border #e5e9f0, muted
+   #7a8496/#58657a) and only adds what they don't have: data tables,
+   status badges, forms, filter tabs and the order-status stepper. */
+
+/* ===== Header tag ===== */
+
+.seller-tag {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 6px;
+    background: #eef1f6;
+    color: #58657a;
+}
+
+/* Admin header tag - same shape as .seller-tag, its own color so the
+   two areas are never visually confused. */
+.admin-tag {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 6px;
+    background: #fdf1e4;
+    color: #a15b0a;
+}
+
+/* ===== Admin: role and account-status badges (additions to .badge) ===== */
+
+.badge-role-buyer  { background: #eef1f6; color: #58657a; }
+.badge-role-seller { background: #e8f0fd; color: #2456b3; }
+.badge-role-admin  { background: #fdf1e4; color: #a15b0a; }
+
+.badge-status-active   { background: #eaf6ee; color: #237a45; }
+.badge-status-disabled { background: #fbeaea; color: #c62828; }
+
+/* ===== Stat cards (4 across) ===== */
+
+.stats-row.stats-row-4 {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+a.stat-card {
+    color: inherit;
+    transition: 0.18s ease;
+}
+
+a.stat-card:hover {
+    border-color: #172033;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(23, 32, 51, 0.10);
+}
+
+.stat-note {
+    font-size: 11px;
+    color: #a0a8b5;
+}
+
+.section-label {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    color: #7a8496;
+    margin: 0 0 12px;
+}
+
+/* ===== Buttons (additions to .btn from shop.css) ===== */
+
+.btn-sm {
+    padding: 6px 12px;
+    font-size: 12px;
+}
+
+.btn-wide {
+    padding: 11px 22px;
+    font-size: 14px;
+    flex: 0 0 auto;
+}
+
+.btn-danger {
+    background: #ffffff;
+    color: #c62828;
+    border-color: #f0c4c4;
+}
+
+.btn-danger:hover {
+    background: #fbeaea;
+    border-color: #c62828;
+}
+
+.btn-link {
+    display: inline-flex;
+}
+
+/* ===== Data tables ===== */
+
+.table-wrap {
+    background: #ffffff;
+    border: 1px solid #e5e9f0;
+    border-radius: 14px;
+    overflow-x: auto;
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.data-table th {
+    text-align: left;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #7a8496;
+    padding: 14px 16px;
+    border-bottom: 1px solid #e5e9f0;
+    white-space: nowrap;
+}
+
+.data-table td {
+    padding: 14px 16px;
+    border-bottom: 1px solid #f1f3f7;
+    font-size: 14px;
+    vertical-align: middle;
+}
+
+.data-table tr:last-child td {
+    border-bottom: none;
+}
+
+.data-table .col-num {
+    text-align: right;
+    white-space: nowrap;
+}
+
+.cell-title {
+    font-weight: 700;
+    color: #172033;
+}
+
+.cell-sub {
+    font-size: 12px;
+    color: #7a8496;
+    margin-top: 2px;
+}
+
+.line-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-size: 13px;
+    color: #30394a;
+}
+
+.line-list li + li {
+    margin-top: 3px;
+}
+
+.row-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    align-items: center;
+}
+
+.row-actions form {
+    margin: 0;
+}
+
+/* ===== Status badges ===== */
+
+.badge {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 6px;
+    white-space: nowrap;
+}
+
+.badge-pending   { background: #fdf1e4; color: #a15b0a; }
+.badge-confirmed { background: #e8f0fd; color: #2456b3; }
+.badge-shipped   { background: #efeafd; color: #5b3fb3; }
+.badge-delivered { background: #eaf6ee; color: #237a45; }
+
+/* ===== Inline stock form ===== */
+
+.stock-cell {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-start;
+}
+
+.stock-form {
+    display: inline-flex;
+    gap: 6px;
+    margin: 0;
+}
+
+.stock-form input[type="number"] {
+    width: 78px;
+    padding: 6px 8px;
+    border: 1px solid #dce1e9;
+    border-radius: 8px;
+    font-size: 13px;
+    color: #172033;
+}
+
+/* ===== Filter tabs ===== */
+
+.filter-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 18px;
+}
+
+.filter-tab {
+    padding: 8px 16px;
+    border: 1px solid #dce1e9;
+    border-radius: 999px;
+    background: #ffffff;
+    font-size: 13px;
+    font-weight: 600;
+    color: #58657a;
+    transition: 0.15s ease;
+}
+
+.filter-tab:hover {
+    border-color: #172033;
+    color: #172033;
+}
+
+.filter-tab.active {
+    background: #172033;
+    border-color: #172033;
+    color: #ffffff;
+}
+
+/* ===== Forms ===== */
+
+.form-panel {
+    max-width: 760px;
+}
+
+.seller-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px 20px;
+}
+
+.form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.form-field-full {
+    grid-column: 1 / -1;
+}
+
+.form-field label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #30394a;
+}
+
+.form-field .req {
+    color: #c62828;
+}
+
+.form-field input[type="text"],
+.form-field input[type="number"],
+.form-field textarea {
+    width: 100%;
+    padding: 11px 14px;
+    border: 1px solid #dce1e9;
+    border-radius: 9px;
+    background: #ffffff;
+    font-family: inherit;
+    font-size: 14px;
+    color: #172033;
+    transition: 0.15s ease;
+}
+
+.form-field textarea {
+    resize: vertical;
+}
+
+.form-field input:focus,
+.form-field textarea:focus {
+    outline: none;
+    border-color: #172033;
+    box-shadow: 0 0 0 3px rgba(23, 32, 51, 0.08);
+}
+
+.form-hint {
+    font-size: 12px;
+    color: #a0a8b5;
+}
+
+.form-actions {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 4px;
+}
+
+.error-list {
+    margin: 6px 0 0 18px;
+    padding: 0;
+}
+
+/* ===== Order details ===== */
+
+.detail-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.detail-note {
+    margin-top: 14px;
+    padding: 10px 12px;
+    border-radius: 10px;
+    background: #f4f7fb;
+    font-size: 12px;
+    color: #58657a;
+    line-height: 1.5;
+}
+
+.status-steps {
+    list-style: none;
+    display: flex;
+    margin: 6px 0 22px;
+    padding: 0;
+}
+
+.status-steps li {
+    flex: 1;
+    position: relative;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 600;
+    color: #a0a8b5;
+    padding-top: 30px;
+}
+
+.status-steps li::before {
+    content: "";
+    position: absolute;
+    top: 6px;
+    left: 50%;
+    width: 16px;
+    height: 16px;
+    margin-left: -8px;
+    border-radius: 50%;
+    background: #ffffff;
+    border: 2px solid #dce1e9;
+    z-index: 1;
+}
+
+.status-steps li::after {
+    content: "";
+    position: absolute;
+    top: 13px;
+    left: -50%;
+    width: 100%;
+    height: 2px;
+    background: #dce1e9;
+}
+
+.status-steps li:first-child::after {
+    display: none;
+}
+
+.status-steps li.done,
+.status-steps li.current {
+    color: #172033;
+}
+
+.status-steps li.done::before,
+.status-steps li.current::before {
+    background: #172033;
+    border-color: #172033;
+}
+
+.status-steps li.done::after,
+.status-steps li.current::after {
+    background: #172033;
+}
+
+.status-steps li.current::before {
+    box-shadow: 0 0 0 4px rgba(23, 32, 51, 0.15);
+}
+
+.status-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+    margin: 0;
+}
+
+.muted {
+    color: #7a8496;
+    font-size: 13px;
+}
+
+.thumb-lg {
+    width: 44px;
+    height: 44px;
+}
+
+/* ===== Responsive ===== */
+
+@media (max-width: 900px) {
+    .stats-row.stats-row-4 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .detail-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 720px) {
+    .seller-form {
+        grid-template-columns: 1fr;
+    }
+
+    /* Tables become stacked cards on phones; each cell shows its own label. */
+    .table-wrap {
+        border: none;
+        background: transparent;
+        overflow: visible;
+    }
+    .data-table thead {
+        display: none;
+    }
+    .data-table,
+    .data-table tbody,
+    .data-table tr,
+    .data-table td {
+        display: block;
+        width: 100%;
+    }
+    .data-table tr {
+        background: #ffffff;
+        border: 1px solid #e5e9f0;
+        border-radius: 14px;
+        padding: 8px 0;
+        margin-bottom: 12px;
+    }
+    .data-table td {
+        border: none;
+        padding: 7px 16px;
+        text-align: left;
+    }
+    .data-table td.col-num {
+        text-align: left;
+    }
+    .data-table td[data-label]::before {
+        content: attr(data-label);
+        display: block;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+        color: #7a8496;
+        margin-bottom: 3px;
+    }
+}
+
+@media (max-width: 520px) {
+    .stats-row.stats-row-4 {
+        grid-template-columns: 1fr 1fr;
+    }
+    .status-steps li {
+        font-size: 11px;
+    }
+}

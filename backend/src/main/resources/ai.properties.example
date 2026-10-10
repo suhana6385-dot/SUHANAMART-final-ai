@@ -1,0 +1,18 @@
+# Copy this file to ai.properties (same folder) and fill in your own
+# values to enable the AI chatbot's live provider. Do NOT commit the
+# real ai.properties to version control - keep it local, exactly like
+# db.properties.
+#
+# Environment variables (SUHANAMART_AI_API_URL / SUHANAMART_AI_API_KEY /
+# SUHANAMART_AI_MODEL) take priority over this file if both are set -
+# see AiConfig.java.
+#
+# If apiKey is left blank (or this file doesn't exist, and no env vars
+# are set either), the chatbot runs in fallback-only mode: it still
+# answers from the SUHANAMART database (products, reviews, the buyer's
+# own orders), just without an AI model rewriting the answer into
+# natural language. Nothing crashes and nothing is exposed either way.
+
+apiUrl=https://api.anthropic.com/v1/messages
+apiKey=
+model=claude-3-5-haiku-latest

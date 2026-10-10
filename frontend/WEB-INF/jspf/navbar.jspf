@@ -1,0 +1,36 @@
+<%-- Shared nav fragment. The including page must set the String
+     variable "activeNav" (e.g. "products") before this include so
+     the correct nav link gets the "active" class. --%>
+<header class="dash-header">
+    <div class="dash-header-inner">
+
+        <div class="dash-brand">
+            <div class="brand-icon">S</div>
+            <span>SUHANAMART</span>
+        </div>
+
+        <nav class="dash-nav" id="dashNav">
+            <a href="<%= request.getContextPath() %>/public/dashboard.jsp"
+               class="<%= "dashboard".equals(activeNav) ? "active" : "" %>">Dashboard</a>
+            <a href="<%= request.getContextPath() %>/products"
+               class="<%= "products".equals(activeNav) ? "active" : "" %>">Products</a>
+            <a href="<%= request.getContextPath() %>/public/cart.jsp"
+               class="<%= "cart".equals(activeNav) ? "active" : "" %>">Cart</a>
+            <a href="<%= request.getContextPath() %>/public/orders.jsp"
+               class="<%= "orders".equals(activeNav) ? "active" : "" %>">Orders</a>
+            <a href="<%= request.getContextPath() %>/public/profile.jsp"
+               class="<%= "profile".equals(activeNav) ? "active" : "" %>">Profile</a>
+            <% if ("SELLER".equals(session.getAttribute("role"))) { %>
+                <a href="<%= request.getContextPath() %>/seller/dashboard">Seller Dashboard</a>
+            <% } else if ("ADMIN".equals(session.getAttribute("role"))) { %>
+                <a href="<%= request.getContextPath() %>/admin/dashboard">Admin Dashboard</a>
+            <% } %>
+            <a href="<%= request.getContextPath() %>/LogoutServlet" class="nav-logout">Logout</a>
+        </nav>
+
+        <button type="button" class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
+
+    </div>
+</header>

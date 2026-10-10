@@ -1,0 +1,29 @@
+# Build output
+target/
+*.class
+*.war
+
+# Real local database credentials - never commit these
+backend/src/main/resources/db.properties
+
+# Stray local copies (e.g. "db.properties copy.example") sometimes left
+# behind while editing - Maven's resource copying picks up anything in
+# this folder, so keep it to exactly db.properties.example + log4j2.xml
+backend/src/main/resources/*copy*
+
+# Logs
+logs/
+*.log
+
+# IDE folders
+.idea/
+*.iml
+.vscode/
+.settings/
+.classpath
+.project
+nbproject/
+
+# OS files
+.DS_Store
+Thumbs.db

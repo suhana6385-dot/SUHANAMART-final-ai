@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Log4j2 configuration for SUHANAMART: com.suhanamart loggers write to the
+    console (Tomcat's catalina.out) and to a rolling logs/suhanamart.log.
+    All servlets/filters/services log through LogManager.getLogger(...).
+    A few older buyer JSPs (cart, checkout, dashboard, orders, order-details,
+    profile) still print load failures with System.err + printStackTrace();
+    that also only reaches the server log, never the browser.
+-->
+<Configuration status="WARN">
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} [%t] %-5level %logger{36} - %msg%n"/>
+        </Console>
+
+        <RollingFile name="RollingFile"
+                     fileName="logs/suhanamart.log"
+                     filePattern="logs/suhanamart-%d{yyyy-MM-dd}-%i.log.gz">
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} [%t] %-5level %logger{36} - %msg%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+                <SizeBasedTriggeringPolicy size="10 MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="10"/>
+        </RollingFile>
+    </Appenders>
+
+    <Loggers>
+        <Logger name="com.suhanamart" level="INFO" additivity="false">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="RollingFile"/>
+        </Logger>
+
+        <Root level="WARN">
+            <AppenderRef ref="Console"/>
+        </Root>
+    </Loggers>
+</Configuration>

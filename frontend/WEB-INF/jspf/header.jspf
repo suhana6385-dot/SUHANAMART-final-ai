@@ -1,0 +1,20 @@
+<%-- Shared <head> boilerplate. The including page must set these
+     variables before this include:
+       String   pageTitle  - e.g. "Products"
+       String[] pageCss    - CSS files under /assets/css/ to load,
+                              in order, after style.css (may be empty)
+--%>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SUHANAMART | <%= pageTitle %></title>
+
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/assets/css/style.css">
+    <% for (String css : pageCss) { %>
+        <link rel="stylesheet" href="<%= request.getContextPath() %>/assets/css/<%= css %>">
+    <% } %>
+</head>
+<body>

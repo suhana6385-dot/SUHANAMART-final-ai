@@ -1,0 +1,16 @@
+# SUHANAMART local database credentials - TEMPLATE FILE.
+#
+# 1. Copy this file to "db.properties" in this same folder
+#    (backend/src/main/resources/db.properties).
+# 2. Fill in your real local MySQL username and password below.
+# 3. Never commit the real "db.properties" file - add it to .gitignore.
+#
+# DBConnection.java only reads this file if the SUHANAMART_DB_USER /
+# SUHANAMART_DB_PASSWORD environment variables and the db.user /
+# db.password JVM system properties are not already set. This is
+# just the easiest local fallback so registration/login don't fail
+# with "Database credentials are missing" simply because Tomcat's
+# process didn't inherit your shell's environment variables.
+
+db.user=your_mysql_username
+db.password=your_mysql_password

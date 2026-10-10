@@ -1,0 +1,219 @@
+/* SUHANAMART - global base styles.
+   Loaded first on every page, before the page-specific CSS
+   (auth.css / dashboard.css / shop.css). This intentionally stays
+   minimal - it provides the reset and shared footer styling, and
+   does not redefine anything the page-specific files already own,
+   so it is safe to add without risking the existing look of any
+   page. */
+
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    min-height: 100vh;
+    color: #172033;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* ===== Shared footer ===== */
+
+.site-footer {
+    border-top: 1px solid #e5e9f0;
+    background: #ffffff;
+    margin-top: 32px;
+}
+
+.site-footer-inner {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    font-size: 12px;
+    color: #7a8496;
+}
+
+.site-footer-tagline {
+    font-weight: 600;
+    color: #58657a;
+}
+
+@media (max-width: 520px) {
+    .site-footer-inner {
+        flex-direction: column;
+        text-align: center;
+        gap: 4px;
+    }
+}
+
+/* ===== Accessibility utility (shared - also defined in auth.css for its own pages) ===== */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* ===== AI chat widget (footer.jspf + main.js). Loaded on every page via
+   style.css so the floating button is available site-wide for logged-in
+   users, without adding a dedicated chat.css file. ===== */
+
+.chat-widget {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    z-index: 999;
+    font-size: 14px;
+}
+
+.chat-toggle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 18px;
+    border: none;
+    border-radius: 999px;
+    background: #172033;
+    color: #fff;
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    box-shadow: 0 6px 18px rgba(23, 32, 51, 0.28);
+}
+
+.chat-toggle:hover { background: #232f47; }
+.chat-toggle-icon { font-size: 18px; }
+
+.chat-panel {
+    position: absolute;
+    right: 0;
+    bottom: 64px;
+    width: 320px;
+    max-width: calc(100vw - 40px);
+    height: 420px;
+    max-height: 70vh;
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 16px 40px rgba(23, 32, 51, 0.22);
+    overflow: hidden;
+}
+
+.chat-panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 14px;
+    background: #172033;
+    color: #fff;
+    font-weight: 700;
+}
+
+.chat-panel-header button {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 20px;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0 4px;
+}
+
+.chat-messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    background: #f7f8fb;
+}
+
+.chat-message {
+    max-width: 88%;
+    padding: 8px 12px;
+    border-radius: 12px;
+    line-height: 1.4;
+    white-space: pre-line;
+    overflow-wrap: anywhere;
+}
+
+.chat-message-user {
+    align-self: flex-end;
+    background: #172033;
+    color: #fff;
+    border-bottom-right-radius: 4px;
+}
+
+.chat-message-bot {
+    align-self: flex-start;
+    background: #eef1f6;
+    color: #1f2633;
+    border-bottom-left-radius: 4px;
+}
+
+.chat-message-error {
+    align-self: flex-start;
+    background: #fbeaea;
+    color: #c62828;
+}
+
+.chat-form {
+    display: flex;
+    gap: 8px;
+    padding: 10px;
+    border-top: 1px solid #e5e9f0;
+    background: #fff;
+}
+
+.chat-form input {
+    flex: 1;
+    padding: 9px 12px;
+    border: 1px solid #dce1e9;
+    border-radius: 999px;
+    font-size: 14px;
+    font-family: inherit;
+}
+
+.chat-form input:focus {
+    outline: none;
+    border-color: #172033;
+}
+
+.chat-form button {
+    padding: 9px 16px;
+    border: none;
+    border-radius: 999px;
+    background: #172033;
+    color: #fff;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.chat-form button:disabled { opacity: 0.6; cursor: default; }
+
+@media (max-width: 480px) {
+    .chat-widget { right: 12px; bottom: 12px; }
+    .chat-panel { width: calc(100vw - 24px); height: 60vh; }
+    .chat-toggle-label { display: none; }
+    .chat-toggle { padding: 14px; border-radius: 50%; }
+}
